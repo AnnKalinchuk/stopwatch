@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.timer {
+  font-size: 36px;
+}
+
+.buttons {
+  margin-top: 10px;
+}
+
+button {
+  cursor:pointer;
+  min-width: 5em;
+  margin: 10px;
+  padding: 5px 10px;
+}
+

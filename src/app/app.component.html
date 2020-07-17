@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div class="container">
+    <h1>{{title}}</h1>
+    <div class="timer">
+    {{hoursDisplay ? hoursDisplay : '00'}} :
+
+    {{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay : '00'}} :
+
+    {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}}
+    </div>
+    <div class="buttons">
+      <button (click)="startClick()">Start</button>
+      <button (dblclick)="waitClick()">Wait</button>
+      <button (click)="stopClick()">Stop</button>
+      <button (click)="reset()">Reset</button>
+    </div>
+  </div>
+</div>

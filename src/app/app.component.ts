@@ -12,6 +12,10 @@ export class AppComponent {
 
   isRunning = false;
   timeTotal = 0;
+
+  isWaitClicked = false;
+  waitTimer;
+
   startDateTime;
 
   hoursDisplay: number = 0;
@@ -49,11 +53,18 @@ export class AppComponent {
   }
 
   waitClick() {
-    if (this.isRunning) {
+
+    if (this.isWaitClicked === false) {
+      this.isWaitClicked = true;
+      this.waitTimer = setTimeout(() => {
+        this.isWaitClicked = false;
+      }, 300);
+    } else if (this.isRunning) {
+      clearTimeout(this.waitTimer);
+      this.isWaitClicked = false;
       const time = performance.now();
       const timeDifference = time - this.startDateTime;
       this.timeTotal = this.timeTotal + timeDifference;
-
       this.waitClick$.next();
       this.isRunning = false;
     }
@@ -79,19 +90,19 @@ export class AppComponent {
   }
 
 
-getSeconds(duration: number) {
+  getSeconds(duration: number) {
     return this.pad(Math.floor(duration / 1000) % 60);
-}
+  }
 
-getMinutes(duration: number) {
+  getMinutes(duration: number) {
     return this.pad(Math.floor(duration / (1000 * 60)) % 60);
-}
+  }
 
-getHours(duration: number) {
+  getHours(duration: number) {
     return this.pad(Math.floor(duration  / (1000 * 60 * 60)) % 24);
-}
+  }
 
-pad(digit: any) {
+  pad(digit: any) {
     return digit <= 9 ? '0' + digit : digit;
   }
 
